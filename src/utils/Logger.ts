@@ -40,5 +40,6 @@ export default class Logger {
     ----------------------------------------------------------------------------
     Application has been started and is listening on: http://localhost:${process.env.APP_PORT}/`);
     console.log(Chalk.bgGreen(Chalk.black(myBox.stringify())));
+    console.log();
   }
 }
