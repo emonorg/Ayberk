@@ -1,6 +1,7 @@
 import 'dotenv/config';
 
 import { createExpressServer } from 'routing-controllers';
+import Express from 'express';
 
 import validateEnv from './utils/EnvValidator';
 import Logger from './utils/Logger';
@@ -12,7 +13,7 @@ validateEnv();
 
 
 // Creates express app, returns: Express app instance
-const app = createExpressServer({
+const app: Express.Application  = createExpressServer({
   controllers: [], // Specify the controllers' classes here
 });
 
