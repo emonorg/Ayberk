@@ -1,25 +1,50 @@
 import 'dotenv/config';
 
-import { createExpressServer } from 'routing-controllers';
 import Express from 'express';
+import CookieParser from 'cookie-parser';
+import BodyParser from 'body-parser';
 
-import validateEnv from './utils/EnvValidator';
+import Controller from './utils/interfaces/Controller.interface';
+import ErrorHandler from './utils/middlewares/ErrorHandler';
 import Logger from './utils/Logger';
 
 import MongoHandler from './database/mongo.database';
 
-// Validate env variables
-validateEnv();
+export default class App {
+  public app: Express.Application;
+  constructor(controllers: Controller[]) {
+    this.app = Express();
+  
+    /**
+     * Initiate services (e.g. Databases, Message Brokers, CronJobs) here
+     */
+    new MongoHandler()
 
+    this.initializeMiddlewares();
+    this.initControllers(controllers)
+  }
 
-// Creates express app, returns: Express app instance
-const app: Express.Application  = createExpressServer({
-  controllers: [], // Specify the controllers' classes here
-});
+  public listen() {    
+    this.app.listen(process.env.APP_PORT)
+    Logger.showInfoBox();
+  }
 
-// Run express application on the port provided in .env
-app.listen(process.env.APP_PORT);
-Logger.showInfoBox();
+  private initializeMiddlewares() {
+    this.app.use(BodyParser.json());
+    this.app.use(CookieParser());
+    this.app.use(ErrorHandler);
+  }
 
-// Connect to database
-new MongoHandler()
+  private initControllers(controllers: Controller[]) {
+    // Load controllers
+    for(let controller of controllers) {
+      this.app.use('/api', controller.router)
+    }
+
+    // Health check endpoint
+    this.app.get('/health-check', (req: Express.Request, res: Express.Response) => {
+      return res.json({isUp: true, time: new Date()})
+    })
+  }
+}
+
