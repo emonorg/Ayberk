@@ -1,4 +1,4 @@
-import App from './app';
+import App from './App';
 import validateEnv from './ayberk/EnvValidator';
 
 // Databases

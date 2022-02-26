@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  api-server:
+    build:
+      context: .
+    container_name: api-server
+    restart: unless-stopped
+    ports:
+      - "19322:19322"
+    environment:
+      - APP_PORT=19322
+      - MONGO_URI=mongodb://root:password123@localhost:27017/?authSource=admin&readPreference=primary&directConnection=true&ssl=false
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
