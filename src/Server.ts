@@ -1,5 +1,5 @@
 import App from './app';
-import validateEnv from './utils/EnvValidator';
+import validateEnv from './utils/ayberk/EnvValidator';
 
 // Controllers
 import AppController from './modules/app/app.controller';

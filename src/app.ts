@@ -4,9 +4,9 @@ import Express from 'express';
 import CookieParser from 'cookie-parser';
 import BodyParser from 'body-parser';
 
-import Controller from './utils/interfaces/Controller.interface';
-import ErrorHandler from './utils/middlewares/ErrorHandler';
-import Logger from './utils/Logger';
+import Controller from './utils/ayberk/interfaces/Controller.interface';
+import ErrorHandler from './utils/ayberk/middlewares/ErrorHandler';
+import Logger from './utils/ayberk/Logger';
 import Morgan from 'morgan';
 
 import MongoHandler from './database/mongo.database';
@@ -23,6 +23,9 @@ export default class App {
 
     this.initializeMiddlewares();
     this.initControllers(controllers)
+
+    // Error handler middleware
+    this.app.use(ErrorHandler);
   }
 
   public listen() {    
@@ -31,10 +34,9 @@ export default class App {
   }
 
   private initializeMiddlewares() {
+    this.app.use(Morgan('dev'))
     this.app.use(BodyParser.json());
     this.app.use(CookieParser());
-    this.app.use(ErrorHandler);
-    this.app.use(Morgan('dev'))
   }
 
   private initControllers(controllers: Controller[]) {

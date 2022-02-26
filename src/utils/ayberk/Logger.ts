@@ -1,7 +1,7 @@
 import Chalk from 'chalk';
 import Box from 'cli-box';
 
-import PackageJson from '../../package.json';
+import PackageJson from '../../../package.json';
 
 const FRAMEWORKID = '[AYBERk]';
 
