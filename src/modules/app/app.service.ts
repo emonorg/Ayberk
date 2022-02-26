@@ -1,4 +1,4 @@
-import HttpException from '../../utils/ayberk/exceptions/HttpException';
+import HttpException from '../../ayberk/exceptions/HttpException';
 import SayHelloDto from './DTOs/sayHello.dto';
 
 export default class AppService {

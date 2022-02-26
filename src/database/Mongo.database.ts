@@ -1,5 +1,5 @@
 import Mongoose from 'mongoose';
-import Logger from '../utils/ayberk/Logger';
+import Logger from '../ayberk/Logger';
 
 export default class MongoHandler {
 

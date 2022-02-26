@@ -4,9 +4,9 @@ import Express from 'express';
 import CookieParser from 'cookie-parser';
 import BodyParser from 'body-parser';
 
-import Controller from './utils/ayberk/interfaces/Controller.interface';
-import ErrorHandler from './utils/ayberk/middlewares/ErrorHandler.middleware';
-import Logger from './utils/ayberk/Logger';
+import Controller from './ayberk/interfaces/Controller.interface';
+import ErrorHandler from './ayberk/middlewares/ErrorHandler.middleware';
+import Logger from './ayberk/Logger';
 import Morgan from 'morgan';
 
 import MongoHandler from './database/mongo.database';

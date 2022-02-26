@@ -1,8 +1,8 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import validationMiddleware from '../../utils/ayberk/middlewares/DtoValidation.middleware';
-import Controller from '../../utils/ayberk/interfaces/Controller.interface';
-import sendResponse from '../../utils/ayberk/ResponseBuilder';
-import ResponseType from '../../utils/ayberk/types/Response';
+import validationMiddleware from '../../ayberk/middlewares/DtoValidation.middleware';
+import Controller from '../../ayberk/interfaces/Controller.interface';
+import sendResponse from '../../ayberk/ResponseBuilder';
+import ResponseType from '../../ayberk/types/Response';
 import AppService from './app.service';
 import SayHelloDto from './DTOs/sayHello.dto';
 
