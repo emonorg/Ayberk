@@ -7,6 +7,7 @@ import BodyParser from 'body-parser';
 import Controller from './utils/interfaces/Controller.interface';
 import ErrorHandler from './utils/middlewares/ErrorHandler';
 import Logger from './utils/Logger';
+import Morgan from 'morgan';
 
 import MongoHandler from './database/mongo.database';
 
@@ -33,6 +34,7 @@ export default class App {
     this.app.use(BodyParser.json());
     this.app.use(CookieParser());
     this.app.use(ErrorHandler);
+    this.app.use(Morgan('dev'))
   }
 
   private initControllers(controllers: Controller[]) {
