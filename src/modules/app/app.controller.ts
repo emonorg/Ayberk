@@ -1,8 +1,10 @@
 import { Router, Request, Response, NextFunction } from 'express';
+import validationMiddleware from '../../utils/ayberk/middlewares/DtoValidation.middleware';
 import Controller from '../../utils/ayberk/interfaces/Controller.interface';
 import sendResponse from '../../utils/ayberk/ResponseBuilder';
 import ResponseType from '../../utils/ayberk/types/Response';
 import AppService from './app.service';
+import SayHelloDto from './DTOs/sayHello.dto';
 
 export default class AppController implements Controller {
   public router: Router = Router();
@@ -19,7 +21,8 @@ export default class AppController implements Controller {
    * Define the sub-routes (with methods) inside this function
    */
   private initializeRoutes(): void {
-    this.router.post(`${this.path}/say-hello`, this.sayHello);
+    // Validation: Use validationMiddleware() method and pass the required dto t validate the incoming data
+    this.router.post(`${this.path}/say-hello`, validationMiddleware(SayHelloDto), this.sayHello);
   }
 
   /**
@@ -34,6 +37,7 @@ export default class AppController implements Controller {
    * @returns Response to the client
    */
   private sayHello = async (request: Request, response: Response, next: NextFunction) => {
+    const sayHelloDto: SayHelloDto = request.body;
     /**
      * You have access to Express' Request, Response and NextFunction inside a controller method
      * Use 'sendResponse()' to respond to the client
@@ -46,7 +50,7 @@ export default class AppController implements Controller {
      */
     return sendResponse(response, 200, new ResponseType({
       success: true,
-      message: await this.appService.sayHello(),
+      message: await this.appService.sayHello(sayHelloDto),
     }, await this.appService.returnObject()));
     /**
      * You can send responses by using express default properties.

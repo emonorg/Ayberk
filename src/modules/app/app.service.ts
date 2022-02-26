@@ -1,13 +1,16 @@
 import HttpException from '../../utils/ayberk/exceptions/HttpException';
+import SayHelloDto from './DTOs/sayHello.dto';
 
 export default class AppService {
 
   // Define the service's methods here
 
-  public async sayHello(): Promise<string> {
-
-    // Simply return strings, objects, etc.
-    return 'Hello world!';
+  public async sayHello(sayHelloDto: SayHelloDto): Promise<string> {
+    if (sayHelloDto.message === 'Hello') {
+      return 'Hello world!';
+    } else {
+      return 'Unknown message!';
+    }
   }
 
   // Returning object sample

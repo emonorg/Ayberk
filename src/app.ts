@@ -5,7 +5,7 @@ import CookieParser from 'cookie-parser';
 import BodyParser from 'body-parser';
 
 import Controller from './utils/ayberk/interfaces/Controller.interface';
-import ErrorHandler from './utils/ayberk/middlewares/ErrorHandler';
+import ErrorHandler from './utils/ayberk/middlewares/ErrorHandler.middleware';
 import Logger from './utils/ayberk/Logger';
 import Morgan from 'morgan';
 
