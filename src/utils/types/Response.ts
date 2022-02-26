@@ -1,6 +1,6 @@
 export default class Response {
   public meta: {
-    success: boolean,
+    success?: boolean,
     message?: string,
     nextStep?: string
   };
