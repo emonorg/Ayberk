@@ -18,6 +18,7 @@ const app = new App(
   [
     new AppController(new AppService()),
   ],
+  // Name the instance that you are connecting to be accessible later, while using
   new MongoHandler('default', process.env.MONGO_URI)
 );
 
