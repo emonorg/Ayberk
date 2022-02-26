@@ -1,6 +1,9 @@
 import App from './app';
 import validateEnv from './ayberk/EnvValidator';
 
+// Databases
+import MongoHandler from './ayberk/database/Mongo.database';
+
 // Controllers
 import AppController from './modules/app/app.controller';
 
@@ -14,7 +17,8 @@ validateEnv();
 const app = new App(
   [
     new AppController(new AppService()),
-  ]
+  ],
+  new MongoHandler('default', process.env.MONGO_URI)
 );
 
 app.listen();

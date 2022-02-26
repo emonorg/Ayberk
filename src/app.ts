@@ -9,17 +9,10 @@ import ErrorHandler from './ayberk/middlewares/ErrorHandler.middleware';
 import Logger from './ayberk/Logger';
 import Morgan from 'morgan';
 
-import MongoHandler from './database/mongo.database';
-
 export default class App {
   public app: Express.Application;
-  constructor(controllers: Controller[]) {
+  constructor(controllers: Controller[], initServices?: any) {
     this.app = Express();
-  
-    /**
-     * Initiate services (e.g. Databases, Message Brokers, CronJobs) here
-     */
-    new MongoHandler()
 
     this.initializeMiddlewares();
     this.initControllers(controllers)
