@@ -1,8 +1,8 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import ClassValidator from '../../ayberk/validators/class-validator';
-import Controller from '../../ayberk/interfaces/Controller.interface';
-import sendResponse from '../../ayberk/ResponseBuilder';
-import ResponseType from '../../ayberk/types/Response';
+import ClassValidator from '../../../src/ayberk/validators/class-validator';
+import Controller from '../../../src/ayberk/interfaces/Controller.interface';
+import sendResponse from '../../../src/ayberk/ResponseBuilder';
+import ResponseType from '../../../src/ayberk/types/Response';
 import AppService from './app.service';
 import SayHelloDto from './DTOs/sayHello.dto';
 

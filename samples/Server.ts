@@ -1,8 +1,8 @@
-import App from './App';
-import validateEnv from './ayberk/EnvValidator';
+import App from '../src/App';
+import validateEnv from '../src/ayberk/EnvValidator';
 
 // Databases
-import MongoHandler from './ayberk/database/Mongo.database';
+import MongoHandler from '../src/ayberk/database/Mongo.database';
 
 // Controllers
 import AppController from './modules/app/app.controller';

@@ -2,9 +2,9 @@
   "name": "ayberk",
   "version": "0.0.0",
   "description": "",
-  "main": "src/server.ts",
+  "main": "samples/server.ts",
   "scripts": {
-    "dev": "nodemon --quiet ./src/server.ts",
+    "dev": "nodemon --quiet ./samples/server.ts",
     "build": "tsc",
     "start": "node dist/server.js"
   },
