@@ -11,6 +11,7 @@
   "author": "Emad Mamaghani",
   "license": "MIT",
   "dependencies": {
+    "ajv": "^8.10.0",
     "body-parser": "^1.19.2",
     "chalk": "^4.1.2",
     "class-transformer": "^0.5.1",
