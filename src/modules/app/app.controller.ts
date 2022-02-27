@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import validationMiddleware from '../../ayberk/validators/class-validator/DtoValidation.middleware';
+import ClassValidator from '../../ayberk/validators/class-validator';
 import Controller from '../../ayberk/interfaces/Controller.interface';
 import sendResponse from '../../ayberk/ResponseBuilder';
 import ResponseType from '../../ayberk/types/Response';
@@ -22,7 +22,7 @@ export default class AppController implements Controller {
    */
   private initializeRoutes(): void {
     // Validation: Use validationMiddleware() method and pass the required dto t validate the incoming data
-    this.router.post(`${this.path}/say-hello`, validationMiddleware(SayHelloDto), this.sayHello);
+    this.router.post(`${this.path}/say-hello`, ClassValidator(SayHelloDto), this.sayHello);
   }
 
   /**
