@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express';
 import { validate, ValidationError } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
-import HttpException from '../exceptions/HttpException';
+import HttpException from '../../exceptions/HttpException';
 
 /**
  * Gets a DTO and validates it.

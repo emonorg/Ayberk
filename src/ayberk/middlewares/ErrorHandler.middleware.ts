@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import HttpException from '../exceptions/HttpException';
 import sendResponse from '../ResponseBuilder';
-import ResponseType from '../types/Response';
+import ResponseType from '../types/Response.type';
 
 /**
  * This middleware catches HttpException and sends it as response to client

@@ -2,15 +2,16 @@
   "name": "ayberk",
   "version": "0.0.0",
   "description": "",
-  "main": "src/server.ts",
+  "main": "samples/server.ts",
   "scripts": {
-    "dev": "nodemon --quiet ./src/server.ts",
+    "dev": "nodemon --quiet ./samples/server.ts",
     "build": "tsc",
     "start": "node dist/server.js"
   },
   "author": "Emad Mamaghani",
   "license": "MIT",
   "dependencies": {
+    "ajv": "^8.10.0",
     "body-parser": "^1.19.2",
     "chalk": "^4.1.2",
     "class-transformer": "^0.5.1",
