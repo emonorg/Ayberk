@@ -1,11 +1,13 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import ClassValidator from '../../../src/ayberk/validators/class-validator';
+// import ClassValidator from '../../../src/ayberk/validators/class-validator';
 import Controller from '../../../src/ayberk/interfaces/Controller.interface';
 import sendResponse from '../../../src/ayberk/ResponseBuilder';
-import ResponseType from '../../../src/ayberk/types/Response';
+import ResponseType from '../../../src/ayberk/types/Response.type';
 import AppService from './app.service';
 import SayHelloDto from './DTOs/sayHello.dto';
 
+import Validator from '../../../src/ayberk/validators/ajv';
+import {sayHelloSchema} from './validation/sayHelloSchema';
 export default class AppController implements Controller {
   public router: Router = Router();
   /**
@@ -22,7 +24,7 @@ export default class AppController implements Controller {
    */
   private initializeRoutes(): void {
     // Validation: Use validationMiddleware() method and pass the required dto t validate the incoming data
-    this.router.post(`${this.path}/say-hello`, ClassValidator(SayHelloDto), this.sayHello);
+    this.router.post(`${this.path}/say-hello`, /*ClassValidator(SayHelloDto),*/ Validator.validate({ body: sayHelloSchema }), this.sayHello);
   }
 
   /**
@@ -45,7 +47,8 @@ export default class AppController implements Controller {
      *      1. response: Express.Response
      *      2. statusCode: number
      *      3. responseData: ResponseType
-     *         [*] You can modify ResponseType class to change the response template of the whole project
+     *         //TODO: Prevent this dependency)
+     *         [*] You can modify ResponseType class to change the response template of the whole project (This will have side effects
      *         [*] If the returned data from service layer contains data (payload), use the data field of ResponseType [OPTIONAL]
      */
     return sendResponse(response, 200, new ResponseType({

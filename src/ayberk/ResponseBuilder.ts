@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import ResponseType from './types/Response';
+import ResponseType from './types/Response.type';
 
 /**
  * Handles the delivery of response to the client

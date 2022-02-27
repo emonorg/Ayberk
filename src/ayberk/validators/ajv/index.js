@@ -1,8 +1,12 @@
 const Ajv = require("ajv");
+const { default: sendResponse } = require("../../ResponseBuilder");
+const { default: HttpException } = require("../../exceptions/HttpException");
+const { default: ResponseType } = require("../../types/Response.type");
 
 /**
  * This class is written by @Simponplend
  * @github simonplend/express-json-validator-middleware
+ * NOTE: Some changes are applied
  */
 
 /**
@@ -11,10 +15,8 @@ const Ajv = require("ajv");
  * @class Validator
  */
 class Validator {
-	constructor(ajvOptions) {
-		this.ajv = new Ajv(ajvOptions);
-		this.validate = this.validate.bind(this);
-	}
+	
+	ajv = null
 
 	/**
 	 * Validator method to be used as middleware
@@ -22,7 +24,13 @@ class Validator {
 	 * @param {Object} options Options in format { request_property: schema }
 	 * @returns
 	 */
-	validate(options) {
+	static validate(options) {
+		// Check if ajv has been initiated
+		if (!this.ajv) {
+			this.ajv = new Ajv();
+			this.validate = this.validate.bind(this);
+		}
+
 		// Self is a reference to the current Validator instance
 		const self = this;
 
@@ -63,7 +71,11 @@ class Validator {
 			}
 
 			if (Object.keys(validationErrors).length !== 0) {
-				next(new ValidationError(validationErrors));
+				// Send framework based responses
+				return sendResponse(res, 400, new ResponseType({
+					success: false,
+					message: 'Validation error!'
+				}, validationErrors.body))
 			} else {
 				next();
 			}
@@ -71,21 +83,5 @@ class Validator {
 	}
 }
 
-/**
- * Validation Error
- *
- * @class ValidationError
- * @extends {Error}
- */
-class ValidationError extends Error {
-	constructor(validationErrors) {
-		super();
-		this.name = "JsonSchemaValidationError";
-		this.validationErrors = validationErrors;
-	}
-}
+export default Validator = Validator;
 
-module.exports = {
-	Validator,
-	ValidationError
-};
