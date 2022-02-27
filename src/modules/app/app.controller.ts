@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import validationMiddleware from '../../ayberk/middlewares/DtoValidation.middleware';
+import validationMiddleware from '../../ayberk/validators/class-validator/DtoValidation.middleware';
 import Controller from '../../ayberk/interfaces/Controller.interface';
 import sendResponse from '../../ayberk/ResponseBuilder';
 import ResponseType from '../../ayberk/types/Response';
